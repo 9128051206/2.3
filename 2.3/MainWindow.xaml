@@ -6,7 +6,12 @@
         xmlns:local="clr-namespace:_2._3"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Window.CommandBindings>
+        <CommandBinding Command="Open" Executed="MenuItem_Click"/>
+        <CommandBinding Command="Save" Executed="MenuItem_Click_1"/>
+        <CommandBinding Command="local:MyCommands.Exit" Executed="ExitExecuted"/>
+    </Window.CommandBindings>
+            <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -14,16 +19,23 @@
         </Grid.RowDefinitions>
         <ToolBarTray Grid.Row="1">
             <ToolBar Margin="5" Padding="5">
-                <ComboBox Margin="5" Padding="5" SelectedIndex="0" Width="200" SelectionChanged="ComboBox_SelectionChanged">
-                    <TextBlock Text="Arial"/>
-                    <TextBlock Text="Time New Roman"/>
-                    <TextBlock Text="Verdana"/>
-                </ComboBox>
-                <ComboBox Margin="5" Padding="5" SelectedIndex="2" Width="50" SelectionChanged="ComboBox_SelectionChanged_1">
-                    <TextBlock Text="12"/>
-                    <TextBlock Text="14"/>
-                    <TextBlock Text="16"/>
-                </ComboBox>
+                <ComboBox Margin="5" 
+                          Padding="5" 
+                          SelectedIndex="0" 
+                          Width="200" 
+                          SelectionChanged="ComboBox_SelectionChanged"
+                          ItemsSource="{StaticResource fonts}"/>
+
+
+                <ComboBox Margin="5"
+                          Padding="5" 
+                          SelectedIndex="2"
+                          Width="50" 
+                          SelectionChanged="ComboBox_SelectionChanged_1"
+                          ItemsSource="{StaticResource sizes}"/>
+                
+
+
             </ToolBar>
             <ToolBar Margin="5,5,-76,5" Padding="5">
                 <Button Click="Button_Click">
@@ -51,9 +63,9 @@
         </TextBox>
         <Menu Grid.Row="0" Margin="5" Padding="5">
             <MenuItem Header="Файл">
-                <MenuItem Header="_Открыть" Click="MenuItem_Click"/>
-                <MenuItem Header="_Сохранить" Click="MenuItem_Click_1"/>
-                <MenuItem Header="_Закрыть" Click="MenuItem_Click_2"/>
+                <MenuItem Header="_Открыть" Command="ApplicationCommands.Open"/>
+                <MenuItem Header="_Сохранить" Command="ApplicationCommands.Save"/>
+                <MenuItem Header="_Закрыть" Command="local:MyCommands.Exit"/>
             </MenuItem>
         </Menu>
     </Grid>

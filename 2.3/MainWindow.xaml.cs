@@ -29,7 +29,7 @@ namespace _2._3
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string fontName = ((sender as ComboBox).SelectedItem as TextBlock).Text;
+            string fontName = ((sender as ComboBox).SelectedItem as string);
             if (textbox != null) 
             {
                 textbox.FontFamily = new FontFamily(fontName);
@@ -40,7 +40,7 @@ namespace _2._3
         {
             if (textbox != null)
             {
-                double fontSize=Convert.ToDouble(((sender as ComboBox).SelectedItem as TextBlock).Text);
+                double fontSize=Convert.ToDouble(((sender as ComboBox).SelectedItem as string));
                 textbox.FontSize=fontSize;
             }
         }
@@ -120,6 +120,11 @@ namespace _2._3
         private void MenuItem_Click_2(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown(); 
+        }
+
+        private void ExitExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }
